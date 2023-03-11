@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EachUni test</title>
+		<style>
+			.container {
+				width: 60rem;
+				margin: 3rem auto;
+			}
+			.heading {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+			}
+			.uni-logo {
+				width: 200px;
+				height: 200px;
+			}
+			.centerbox,
+			.subbox {
+				text-align: center;
+			}
+			.center-title {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+			.more-info {
+				list-style-type: none;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="container">
+				<div class="heading">
+					<img
+						src="{% static 'templates/media_files/pictures/' %}{{one_uni.Uni_Logo}}"
+						alt="logo"
+						class="uni-logo"
+					/>
+					<h1>{{one_uni.Uni_Name}}</h1>
+				</div>
+				<div class="centerbox">
+					<p class="center-title">
+						This university is located on
+						{{one_uni.from_city.City_Name}} in the
+						{{one_uni.from_city.from_country.Country_Name}} Country
+					</p>
+					<p>{{one_uni.Uni_Overview}}</p>
+				</div>
+				<div class="subbox">
+					<ul class="more-info">
+						<li class="each-info">{{one_uni.Uni_Acronym}}</li>
+						<li class="each-info">{{one_uni.Uni_Type}}</li>
+						<li class="each-info">
+							In {{one_uni.Uni_EstablishedYear}} was established
+						</li>
+						<li class="each-info">
+							{{one_uni.Uni_All_Students}} Students
+						</li>
+						<li class="each-info">
+							{{one_uni.Uni_International_Students}} International
+							Students
+						</li>
+						<li class="each-info">
+							<a href="{{one_uni.Uni_Website}}" target="_blank"
+								>University Website</a
+							>
+						</li>
+						<li class="each-info">
+							Apply Rate : {{one_uni.Uni_ApplyRate}}
+						</li>
+					</ul>
+					<br /><br />
+					<a href="{% url 'main_page' %}" class="mainpage"
+						>Main Page</a
+					>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

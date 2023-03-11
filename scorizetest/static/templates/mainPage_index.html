@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scorize Tst</title>
+		<style>
+			main {
+				text-align: center;
+			}
+			p {
+				font-size: 2rem;
+			}
+			a {
+				border: 1px solid black;
+				padding: 2rem;
+				background-color: yellow;
+				text-decoration: none;
+				color: black;
+			}
+			a:hover {
+				color: gray;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<p>Hey {{name}}! Welcome to this test page.</p>
+			<a href="{% url 'main_page' %}" class="unilist-app">Get Start</a>
+		</main>
+	</body>
+</html>
