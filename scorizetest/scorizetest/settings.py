@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # modified_by_developer
     'Scorize_UniList',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,144 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.filter-box,
+			.link-box {
+				text-align: center;
+				margin: 3rem auto;
+				border: 1px solid #000;
+				padding: 2rem;
+				width: 40rem;
+			}
+			.uni-box {
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+				margin: 2rem auto;
+				width: 45rem;
+				background-color: gray;
+			}
+			.uni-pic {
+				width: 150px;
+				height: 150px;
+			}
+			.uni-info {
+				width: 20rem;
+			}
+			.mypagination {
+				text-align: center;
+				margin: 2rem auto;
+			}
+			.each-uni-link {
+				color: black;
+				text-decoration: none;
+			}
+			.main-page,
+			.search-page {
+				text-decoration: none;
+				color: #000;
+			}
+			.main-page:hover,
+			.search-page:hover {
+				color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="filter-box">
+				<a href="{% url 'filtered_page' %}" class="search-page"
+					>Search Page</a
+				>
+			</div>
+			{% for each_uni in all_uni %}
+			<a
+				class="each-uni-link"
+				target="_blank"
+				href="{% url 'each_uni_selector' pk=each_uni.id %}"
+			>
+				<div class="uni-box">
+					<div class="uni-logo">
+						<img
+							src="{% static 'templates/media_files/pictures/' %}{{each_uni.Uni_Logo}}"
+							alt="uni-logo"
+							class="uni-pic"
+						/>
+					</div>
+					<div class="uni-details">
+						<ul class="uni-info">
+							<li class="uni-parts">
+								City: {{each_uni.from_city.City_Name}} in
+								{{each_uni.from_city.from_country.Country_Name}}
+							</li>
+							<li class="uni-parts">
+								Name: {{each_uni.Uni_Name}}
+							</li>
+							<li class="uni-parts">
+								Acronym: {{each_uni.Uni_Acronym}}
+							</li>
+							<li class="uni-parts">
+								Type: {{each_uni.Uni_Type}}
+							</li>
+							<li class="uni-parts">
+								Overview:
+								{{each_uni.Uni_Overview|truncatechars:10}}
+							</li>
+							<li class="uni-parts">
+								Establish Year: {{each_uni.Uni_EstablishedYear}}
+							</li>
+							<li class="uni-parts">
+								Students: {{each_uni.Uni_All_Students}}
+							</li>
+							<li class="uni-parts">
+								International Students:
+								{{each_uni.Uni_International_Students}}
+							</li>
+							<li class="uni-parts">
+								University Rate: {{each_uni.Uni_ApplyRate}}
+							</li>
+							<li class="uni-parts">
+								Website:
+								<a href="{{each_uni.Uni_Website}}"
+									>{{each_uni.Uni_Website}}</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</a>
+			{% endfor %}
+			<div class="mypagination pagination">
+				<span class="step-links">
+					{% if page_obj.has_previous %}
+					<a href="?page=1">&laquo; first</a>
+					<a href="?page={{ page_obj.previous_page_number }}"
+						>previous</a
+					>
+					{% endif %}
+
+					<span class="current">
+						Page {{ page_obj.number }} of
+						{{page_obj.paginator.num_pages}}.
+					</span>
+
+					{% if page_obj.has_next %}
+					<a href="?page={{ page_obj.next_page_number }}">next</a>
+					<a href="?page={{ page_obj.paginator.num_pages }}"
+						>last &raquo;</a
+					>
+					{% endif %}
+				</span>
+			</div>
+			<div class="link-box">
+				<a href="{% url 'main_page' %}" class="main-page">Main Page</a>
+			</div>
+		</main>
+	</body>
+</html>
